@@ -1,10 +1,11 @@
 import 'package:badges/badges.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:cardapio/app/modules/home/controllers/extrato_controller.dart';
 import 'package:cardapio/app/modules/home/controllers/menu_controller.dart';
 import 'package:cardapio/app/modules/home/views/components/lista_itens.dart';
 import 'package:cardapio/app/modules/home/views/components/top_menu.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -19,10 +20,12 @@ class HomeView extends GetView<HomeController> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: TopMenu(menus: Get.find<MenuController>().menu),
                 ),
-                Expanded(child: ListaItens(categoria: categorias!)),
+                Expanded(
+                  child: ListaItens(categoria: categorias!),
+                ),
               ],
             ),
           );
@@ -30,25 +33,34 @@ class HomeView extends GetView<HomeController> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
-          padding: const EdgeInsets.all(5),
-          height: 80.0,
-          width: 80.0,
-          child: FittedBox(
-              child: Obx(() => Badge(
-                    showBadge: (Get.find<ExtratoController>().extrato?.quantidade ?? 0) > 0,
-                    badgeContent: Text(Get.find<ExtratoController>().extrato?.quantidade.toString() ?? '1'),
-                    child: FloatingActionButton(
-                      highlightElevation: 20.0,
-                      elevation: 10,
-                      backgroundColor: Colors.black,
-                      child: const Icon(
-                        Icons.shopping_cart,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      onPressed: () async {},
-                    ),
-                  )))),
+        padding: const EdgeInsets.all(5),
+        height: 80,
+        width: 80,
+        child: FittedBox(
+          child: Obx(
+            () => Badge(
+              showBadge:
+                  (Get.find<ExtratoController>().extrato?.quantidade ?? 0) > 0,
+              badgeContent: Text(Get.find<ExtratoController>()
+                      .extrato
+                      ?.quantidade
+                      .toString() ??
+                  '1'),
+              child: FloatingActionButton(
+                highlightElevation: 20,
+                elevation: 10,
+                backgroundColor: Colors.black,
+                child: const Icon(
+                  Icons.shopping_cart,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                onPressed: () async {},
+              ),
+            ),
+          ),
+        ),
+      ),
       bottomNavigationBar: Container(
         height: 30,
         decoration: BoxDecoration(

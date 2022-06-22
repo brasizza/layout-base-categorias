@@ -1,6 +1,7 @@
+import 'package:get/get.dart';
+
 import 'package:cardapio/app/data/model/extrato.dart';
 import 'package:cardapio/app/data/model/item.dart';
-import 'package:get/get.dart';
 
 class ExtratoController extends GetxController {
   final _extrato = Rxn<Extrato>();
@@ -11,11 +12,12 @@ class ExtratoController extends GetxController {
       _extrato.value!.quantidade = 0;
       _extrato.value!.somaTotal = 0;
       for (var item in _extrato.value!.items!) {
-        _extrato.value!.quantidade = _extrato.value!.quantidade! + (item.quantidade ?? 1);
-        _extrato.value!.somaTotal = _extrato.value!.somaTotal! + ((item.quantidade ?? 1) * item.valor);
+        _extrato.value!.quantidade =
+            _extrato.value!.quantidade! + (item.quantidade ?? 1);
+        _extrato.value!.somaTotal =
+            _extrato.value!.somaTotal! + ((item.quantidade ?? 1) * item.valor);
       }
     }
-
     _extrato.refresh();
   }
 

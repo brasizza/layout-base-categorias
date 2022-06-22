@@ -1,6 +1,7 @@
+import 'package:get/get.dart';
+
 import 'package:cardapio/app/data/model/item.dart';
 import 'package:cardapio/app/modules/home/controllers/extrato_controller.dart';
-import 'package:get/get.dart';
 
 class DetalheItemController extends GetxController {
   final _quantidade = 1.obs;

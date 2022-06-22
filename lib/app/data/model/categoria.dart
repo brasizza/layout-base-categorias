@@ -1,9 +1,9 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:cardapio/app/data/model/item.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+import 'package:cardapio/app/data/model/item.dart';
 
 part 'categoria.g.dart';
 
@@ -11,13 +11,10 @@ part 'categoria.g.dart';
 class Categoria extends HiveObject {
   @HiveField(0)
   final String id;
-
   @HiveField(1)
   final String? codigo;
-
   @HiveField(2)
   final String nome;
-
   @HiveField(3)
   List<Item> itens;
 
@@ -66,7 +63,8 @@ class Categoria extends HiveObject {
 
   String toJson() => json.encode(toMap());
 
-  factory Categoria.fromJson(String source) => Categoria.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Categoria.fromJson(String source) =>
+      Categoria.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -77,7 +75,11 @@ class Categoria extends HiveObject {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Categoria && other.id == id && other.codigo == codigo && other.nome == nome && listEquals(other.itens, itens);
+    return other is Categoria &&
+        other.id == id &&
+        other.codigo == codigo &&
+        other.nome == nome &&
+        listEquals(other.itens, itens);
   }
 
   @override

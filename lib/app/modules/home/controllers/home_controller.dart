@@ -1,7 +1,8 @@
+import 'package:get/get.dart';
+
 import 'package:cardapio/app/core/hive/hive_init.dart';
 import 'package:cardapio/app/data/model/categoria.dart';
 import 'package:cardapio/app/modules/home/controllers/cardapio_controller.dart';
-import 'package:get/get.dart';
 
 class HomeController extends GetxController with StateMixin<Categoria?> {
   // final _cardapioIndex = 0.obs;
