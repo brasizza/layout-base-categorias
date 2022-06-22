@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:hive_flutter/hive_flutter.dart';
@@ -15,7 +14,6 @@ class Item extends HiveObject {
   final String imagem;
   @HiveField(3)
   final double valor;
-
   @HiveField(4)
   final int? quantidade;
 
@@ -63,7 +61,8 @@ class Item extends HiveObject {
 
   String toJson() => json.encode(toMap());
 
-  factory Item.fromJson(String source) => Item.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Item.fromJson(String source) =>
+      Item.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -74,7 +73,11 @@ class Item extends HiveObject {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Item && other.id == id && other.nome == nome && other.imagem == imagem && other.valor == valor;
+    return other is Item &&
+        other.id == id &&
+        other.nome == nome &&
+        other.imagem == imagem &&
+        other.valor == valor;
   }
 
   @override

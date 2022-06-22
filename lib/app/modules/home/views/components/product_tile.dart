@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cardapio/app/core/extensions/numbers.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cardapio/app/core/extensions/numbers.dart';
 
 class ProductTile extends StatelessWidget {
   final String image;
@@ -43,9 +44,7 @@ class ProductTile extends StatelessWidget {
                     width: 0.5,
                   ),
                   boxShadow: const [
-                    BoxShadow(
-                      blurRadius: 1,
-                    ),
+                    BoxShadow(blurRadius: 1),
                   ],
                 ),
                 child: Column(
@@ -73,7 +72,10 @@ class ProductTile extends StatelessWidget {
                           ),
                           Text(
                             price.formatCurrency(),
-                            style: const TextStyle(color: Colors.white, fontSize: 10),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                            ),
                           ),
                         ],
                       ),

@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:hive/hive.dart';
@@ -9,12 +8,11 @@ part 'menu.g.dart';
 class Menu extends HiveObject {
   @HiveField(0)
   final String id;
-
   @HiveField(1)
   final String? codigo;
-
   @HiveField(2)
   final String nome;
+
   Menu({
     required this.id,
     this.codigo,
@@ -52,7 +50,8 @@ class Menu extends HiveObject {
 
   String toJson() => json.encode(toMap());
 
-  factory Menu.fromJson(String source) => Menu.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Menu.fromJson(String source) =>
+      Menu.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'Menu(id: $id, codigo: $codigo, nome: $nome)';
@@ -61,7 +60,10 @@ class Menu extends HiveObject {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Menu && other.id == id && other.codigo == codigo && other.nome == nome;
+    return other is Menu &&
+        other.id == id &&
+        other.codigo == codigo &&
+        other.nome == nome;
   }
 
   @override

@@ -1,18 +1,21 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:cardapio/app/data/model/item.dart';
 import 'package:flutter/foundation.dart';
+
+import 'package:cardapio/app/data/model/item.dart';
 
 class Extrato {
   List<Item>? items;
-
   int? quantidade = 0;
-
   double? somaTotal = 0.00;
-
   String? codTransacao;
-  Extrato({this.items, this.quantidade, this.somaTotal, this.codTransacao});
+
+  Extrato({
+    this.items,
+    this.quantidade,
+    this.somaTotal,
+    this.codTransacao,
+  });
   // Hive fields go here
 
   Extrato copyWith({
@@ -53,18 +56,28 @@ class Extrato {
 
   String toJson() => json.encode(toMap());
 
-  factory Extrato.fromJson(String source) => Extrato.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Extrato.fromJson(String source) =>
+      Extrato.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'Extrato(items: $items, quantidade: $quantidade, somaTotal: $somaTotal)';
+  String toString() =>
+      'Extrato(items: $items, quantidade: $quantidade, somaTotal: $somaTotal)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Extrato && listEquals(other.items, items) && other.quantidade == quantidade && other.somaTotal == somaTotal && other.codTransacao == codTransacao;
+    return other is Extrato &&
+        listEquals(other.items, items) &&
+        other.quantidade == quantidade &&
+        other.somaTotal == somaTotal &&
+        other.codTransacao == codTransacao;
   }
 
   @override
-  int get hashCode => items.hashCode ^ quantidade.hashCode ^ somaTotal.hashCode ^ codTransacao.hashCode;
+  int get hashCode =>
+      items.hashCode ^
+      quantidade.hashCode ^
+      somaTotal.hashCode ^
+      codTransacao.hashCode;
 }

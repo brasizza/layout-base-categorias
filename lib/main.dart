@@ -1,6 +1,7 @@
-import 'package:cardapio/app/core/hive/hive_init.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:cardapio/app/core/hive/hive_init.dart';
 
 import 'app/routes/app_pages.dart';
 
@@ -9,7 +10,7 @@ void main() async {
   await HiveInit.init();
   runApp(
     GetMaterialApp(
-      title: "Application",
+      title: 'Application',
       initialRoute: AppPages.SPLASH,
       getPages: AppPages.routes,
     ),
