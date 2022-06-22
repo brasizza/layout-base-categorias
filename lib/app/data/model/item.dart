@@ -1,11 +1,21 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:hive_flutter/hive_flutter.dart';
+
+part 'item.g.dart';
+
+@HiveType(typeId: 0)
 class Item {
+  @HiveField(0)
   final String id;
+  @HiveField(1)
   final String nome;
+  @HiveField(2)
   final String imagem;
+  @HiveField(3)
   final double valor;
+
   Item({
     required this.id,
     required this.nome,

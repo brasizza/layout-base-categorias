@@ -1,3 +1,4 @@
+import 'package:cardapio/app/core/hive/hive_init.dart';
 import 'package:cardapio/app/data/model/categoria.dart';
 import 'package:cardapio/app/modules/home/controllers/cardapio_controller.dart';
 import 'package:get/get.dart';
@@ -10,16 +11,25 @@ class HomeController extends GetxController with StateMixin<List<Categoria>> {
 
   @override
   void onInit() {
+    getCategorias();
+    super.onInit();
+  }
+
+  void getCategorias() {
     final cardapioController = Get.find<CardapioController>();
-    cardapioController.getCategorias().then((resp) {
+    cardapioController.getCategoriasHive().then((resp) {
       change(resp, status: RxStatus.success());
     }, onError: (err) {
-      print(err);
       change(
         null,
         status: RxStatus.error('Error get data'),
       );
-      super.onInit();
     });
+  }
+
+  Future invalidateCache() async {
+    change(null, status: RxStatus.loading());
+    await HiveInit.initCache(refresh: true);
+    getCategorias();
   }
 }

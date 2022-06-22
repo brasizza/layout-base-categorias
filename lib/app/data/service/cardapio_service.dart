@@ -12,4 +12,8 @@ class CardapioService extends GetxService {
   Future<List<Categoria>> getCategorias() async {
     return await repository.getCategorias();
   }
+
+  Future<List<Categoria>> getCategoriasHive() async {
+    return await repository.getCategoriasHive();
+  }
 }

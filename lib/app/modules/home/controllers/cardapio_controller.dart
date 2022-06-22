@@ -12,4 +12,8 @@ class CardapioController extends GetxController {
   Future<List<Categoria>> getCategorias() async {
     return await service.getCategorias();
   }
+
+  Future<List<Categoria>> getCategoriasHive() async {
+    return await service.getCategoriasHive();
+  }
 }

@@ -3,12 +3,24 @@ import 'dart:convert';
 
 import 'package:cardapio/app/data/model/item.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+part 'categoria.g.dart';
+
+@HiveType(typeId: 1)
 class Categoria {
+  @HiveField(0)
   final String id;
+
+  @HiveField(1)
   final String? codigo;
+
+  @HiveField(2)
   final String nome;
+
+  @HiveField(3)
   List<Item> itens;
+
   Categoria({
     required this.id,
     this.codigo,
