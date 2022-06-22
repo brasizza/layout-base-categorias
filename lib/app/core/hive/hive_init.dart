@@ -1,3 +1,4 @@
+import 'package:cardapio/app/data/model/menu.dart';
 import 'package:cardapio/app/data/repository/cardapio_repository.dart';
 import 'package:cardapio/app/data/service/cardapio_service.dart';
 import 'package:cardapio/app/modules/home/controllers/cardapio_controller.dart';
@@ -26,32 +27,37 @@ class HiveInit {
   static Future<void> registerAdapters() async {
     Hive.registerAdapter(ItemAdapter());
     Hive.registerAdapter(CategoriaAdapter());
+    Hive.registerAdapter(MenuAdapter());
   }
 
   static Future<void> openBoxes() async {
     Box<Categoria> boxCategoria = await Hive.openBox<Categoria>('categoria');
     Get.put<Box<Categoria>>(boxCategoria, tag: Constants.categoriaHive, permanent: true);
+
+    Box<Menu> boxMenu = await Hive.openBox<Menu>('menu');
+    Get.put<Box<Menu>>(boxMenu, tag: Constants.menuHive, permanent: true);
   }
 
   static Future<void> initCache({bool refresh = false}) async {
     final hive = Get.find<Box<Categoria>>(tag: Constants.categoriaHive);
-    if (refresh) {
-      await hive.clear();
-    }
-    if (hive.length == 0) {
-      final categorias = await Get.put(
-        CardapioController(
-          service: Get.put(
-            CardapioService(
-              repository: Get.put(
-                CardapioRepository(),
-              ),
+    await Get.find<Box<Menu>>(tag: Constants.menuHive).clear();
+    // if (refresh) {
+    //   await hive.clear();
+    // }
+    // if (hive.length == 0) {
+    final categorias = await Get.put(
+      CardapioController(
+        service: Get.put(
+          CardapioService(
+            repository: Get.put(
+              CardapioRepository(),
             ),
           ),
         ),
-      ).getCategorias();
-      await hive.clear();
-      await hive.addAll(categorias);
-    }
+      ),
+    ).getCategorias();
+    await hive.clear();
+    await hive.addAll(categorias);
+    // }
   }
 }

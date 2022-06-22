@@ -1,44 +1,38 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'item.dart';
+part of 'menu.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ItemAdapter extends TypeAdapter<Item> {
+class MenuAdapter extends TypeAdapter<Menu> {
   @override
-  final int typeId = 0;
+  final int typeId = 3;
 
   @override
-  Item read(BinaryReader reader) {
+  Menu read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Item(
+    return Menu(
       id: fields[0] as String,
-      nome: fields[1] as String,
-      imagem: fields[2] as String,
-      valor: fields[3] as double,
-      quantidade: fields[4] as int?,
+      codigo: fields[1] as String?,
+      nome: fields[2] as String,
     );
   }
 
   @override
-  void write(BinaryWriter writer, Item obj) {
+  void write(BinaryWriter writer, Menu obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.nome)
+      ..write(obj.codigo)
       ..writeByte(2)
-      ..write(obj.imagem)
-      ..writeByte(3)
-      ..write(obj.valor)
-      ..writeByte(4)
-      ..write(obj.quantidade);
+      ..write(obj.nome);
   }
 
   @override
@@ -47,7 +41,7 @@ class ItemAdapter extends TypeAdapter<Item> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ItemAdapter &&
+      other is MenuAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

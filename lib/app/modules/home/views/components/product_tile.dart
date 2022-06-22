@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cardapio/app/core/extensions/numbers.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +18,6 @@ class ProductTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int rand = Random().nextInt(31337);
-
     return Material(
       color: Colors.white,
       borderRadius: BorderRadius.circular(16),
@@ -37,7 +33,7 @@ class ProductTile extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: CachedNetworkImageProvider(
-                      'https://picsum.photos/seed/{$rand}/400',
+                      'https://picsum.photos/seed/{$image}/400',
                     ),
                     fit: BoxFit.fill,
                   ),

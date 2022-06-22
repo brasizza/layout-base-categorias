@@ -1,4 +1,6 @@
 import 'package:cardapio/app/data/model/categoria.dart';
+import 'package:cardapio/app/modules/detalhe_item/controllers/detalhe_item_controller.dart';
+import 'package:cardapio/app/modules/detalhe_item/views/detalhe_item_view.dart';
 import 'package:cardapio/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,12 +28,23 @@ class ListaItens extends StatelessWidget {
               childAspectRatio: 4 / 5,
             ),
             itemBuilder: (context, index) {
-              final product = categoria.itens[index];
+              final item = categoria.itens[index];
               return ProductTile(
-                image: product.imagem,
-                text: product.nome,
-                price: product.valor,
-                onTap: () {},
+                image: item.imagem,
+                text: item.nome,
+                price: item.valor,
+                onTap: () {
+                  Get.lazyPut<DetalheItemController>(
+                    () => DetalheItemController()..item = item,
+                  );
+                  Get.bottomSheet(
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: DetalheItemView(),
+                      ),
+                      ignoreSafeArea: true,
+                      isScrollControlled: false);
+                },
               );
             },
           ),

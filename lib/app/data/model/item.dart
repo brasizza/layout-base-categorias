@@ -6,7 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 part 'item.g.dart';
 
 @HiveType(typeId: 0)
-class Item {
+class Item extends HiveObject {
   @HiveField(0)
   final String id;
   @HiveField(1)
@@ -16,11 +16,15 @@ class Item {
   @HiveField(3)
   final double valor;
 
+  @HiveField(4)
+  final int? quantidade;
+
   Item({
     required this.id,
     required this.nome,
     required this.imagem,
     required this.valor,
+    this.quantidade = 0,
   });
 
   Item copyWith({
@@ -28,12 +32,14 @@ class Item {
     String? nome,
     String? imagem,
     double? valor,
+    int? quantidade,
   }) {
     return Item(
       id: id ?? this.id,
       nome: nome ?? this.nome,
       imagem: imagem ?? this.imagem,
       valor: valor ?? this.valor,
+      quantidade: quantidade ?? this.quantidade,
     );
   }
 

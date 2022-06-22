@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:cardapio/app/core/constants.dart';
 import 'package:cardapio/app/data/model/categoria.dart';
+import 'package:cardapio/app/data/model/menu.dart';
 import 'package:get/get_connect/connect.dart';
 import 'package:get/instance_manager.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -16,19 +17,29 @@ class CardapioRepository extends GetConnect {
   Future<List<Categoria>> getCategorias() async {
     log('PEGANDO DO JSON');
 
+    final boxMenu = Get.find<Box<Menu>>(tag: Constants.menuHive);
+
     Map<String, dynamic> dadosApi = json.decode(dadosJson);
     final categorias = <Categoria>[];
 
     for (var item in dadosApi['categorias']) {
       categorias.add(Categoria.fromMap(item));
+      boxMenu.add(Menu.fromMap(item));
     }
     return categorias;
   }
 
-  Future<List<Categoria>> getCategoriasHive() async {
+  Future<List<Categoria>> getAllHive() async {
     log('PEGANDO DO HIVE');
     final box = Get.find<Box<Categoria>>(tag: Constants.categoriaHive);
 
     return box.values.toList();
+  }
+
+  Future<Categoria?> getCategoriaHive({required int index}) async {
+    log('PEGANDO DO HIVE');
+    final box = Get.find<Box<Categoria>>(tag: Constants.categoriaHive);
+
+    return box.getAt(index);
   }
 }

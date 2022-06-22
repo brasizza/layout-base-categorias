@@ -3,21 +3,20 @@ import 'package:cardapio/app/data/model/categoria.dart';
 import 'package:cardapio/app/modules/home/controllers/cardapio_controller.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController with StateMixin<List<Categoria>> {
-  final _cardapioIndex = 0.obs;
-  int get cardapioIndex => _cardapioIndex.value;
-
-  set cardapioIndex(int index) => _cardapioIndex(index);
+class HomeController extends GetxController with StateMixin<Categoria?> {
+  // final _cardapioIndex = 0.obs;
+  // int get cardapioIndex => _cardapioIndex.value;
+  // set cardapioIndex(int index) => _cardapioIndex(index);
 
   @override
   void onInit() {
-    getCategorias();
+    getItens();
     super.onInit();
   }
 
-  void getCategorias() {
+  void getItens({int index = 0}) {
     final cardapioController = Get.find<CardapioController>();
-    cardapioController.getCategoriasHive().then((resp) {
+    cardapioController.getCategoriaHive(index: index).then((resp) {
       change(resp, status: RxStatus.success());
     }, onError: (err) {
       change(
@@ -30,6 +29,6 @@ class HomeController extends GetxController with StateMixin<List<Categoria>> {
   Future invalidateCache() async {
     change(null, status: RxStatus.loading());
     await HiveInit.initCache(refresh: true);
-    getCategorias();
+    getItens();
   }
 }
