@@ -5,7 +5,7 @@ import 'package:cardapio/app/data/repository/menu_repository.dart';
 import 'package:cardapio/app/data/service/cardapio_service.dart';
 import 'package:cardapio/app/data/service/menu_service.dart';
 import 'package:cardapio/app/modules/home/controllers/cardapio_controller.dart';
-import 'package:cardapio/app/modules/home/controllers/extrato_controller.dart';
+import 'package:cardapio/app/modules/extrato/controllers/extrato_controller.dart';
 import 'package:cardapio/app/modules/home/controllers/menu_controller.dart';
 
 import '../controllers/home_controller.dart';
@@ -17,8 +17,7 @@ class HomeBinding extends Bindings {
     Get.put<CardapioService>(
       CardapioService(repository: Get.find<CardapioRepository>()),
     );
-    Get.put<CardapioController>(
-        CardapioController(service: Get.find<CardapioService>()));
+    Get.put<CardapioController>(CardapioController(service: Get.find<CardapioService>()));
     Get.put<MenuRepository>(MenuRepository());
     Get.put<MenuService>(
       MenuService(repository: Get.find<MenuRepository>()),

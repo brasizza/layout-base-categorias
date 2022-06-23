@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'categoria.dart';
+part of 'category.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class CategoriaAdapter extends TypeAdapter<Categoria> {
+class CategoryAdapter extends TypeAdapter<Category> {
   @override
   final int typeId = 1;
 
   @override
-  Categoria read(BinaryReader reader) {
+  Category read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Categoria(
+    return Category(
       id: fields[0] as String,
       codigo: fields[1] as String?,
       nome: fields[2] as String,
@@ -25,7 +25,7 @@ class CategoriaAdapter extends TypeAdapter<Categoria> {
   }
 
   @override
-  void write(BinaryWriter writer, Categoria obj) {
+  void write(BinaryWriter writer, Category obj) {
     writer
       ..writeByte(4)
       ..writeByte(0)
@@ -44,7 +44,7 @@ class CategoriaAdapter extends TypeAdapter<Categoria> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CategoriaAdapter &&
+      other is CategoryAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

@@ -13,9 +13,9 @@ class Item extends HiveObject {
   @HiveField(2)
   final String imagem;
   @HiveField(3)
-  final double valor;
+  double valor;
   @HiveField(4)
-  final int? quantidade;
+  int? quantidade;
 
   Item({
     required this.id,
@@ -61,8 +61,7 @@ class Item extends HiveObject {
 
   String toJson() => json.encode(toMap());
 
-  factory Item.fromJson(String source) =>
-      Item.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Item.fromJson(String source) => Item.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -73,11 +72,7 @@ class Item extends HiveObject {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Item &&
-        other.id == id &&
-        other.nome == nome &&
-        other.imagem == imagem &&
-        other.valor == valor;
+    return other is Item && other.id == id && other.nome == nome && other.imagem == imagem && other.valor == valor;
   }
 
   @override

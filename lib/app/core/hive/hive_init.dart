@@ -6,7 +6,7 @@ import 'package:cardapio/app/data/repository/cardapio_repository.dart';
 import 'package:cardapio/app/data/service/cardapio_service.dart';
 import 'package:cardapio/app/modules/home/controllers/cardapio_controller.dart';
 
-import '../../data/model/categoria.dart';
+import '../../data/model/category.dart';
 import '../../data/model/item.dart';
 import '../constants.dart';
 
@@ -27,13 +27,13 @@ class HiveInit {
 
   static Future<void> registerAdapters() async {
     Hive.registerAdapter(ItemAdapter());
-    Hive.registerAdapter(CategoriaAdapter());
+    Hive.registerAdapter(CategoryAdapter());
     Hive.registerAdapter(MenuAdapter());
   }
 
   static Future<void> openBoxes() async {
-    Box<Categoria> boxCategoria = await Hive.openBox<Categoria>('categoria');
-    Get.put<Box<Categoria>>(
+    Box<Category> boxCategoria = await Hive.openBox<Category>('categoria');
+    Get.put<Box<Category>>(
       boxCategoria,
       tag: Constants.categoriaHive,
       permanent: true,
@@ -43,7 +43,7 @@ class HiveInit {
   }
 
   static Future<void> initCache({bool refresh = false}) async {
-    final hive = Get.find<Box<Categoria>>(tag: Constants.categoriaHive);
+    final hive = Get.find<Box<Category>>(tag: Constants.categoriaHive);
     await Get.find<Box<Menu>>(tag: Constants.menuHive).clear();
     // if (refresh) {
     //   await hive.clear();
