@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 
 import 'package:cardapio/app/core/hive/hive_init.dart';
-import 'package:cardapio/app/data/model/categoria.dart';
+import 'package:cardapio/app/data/model/category.dart';
 import 'package:cardapio/app/modules/home/controllers/cardapio_controller.dart';
 
-class HomeController extends GetxController with StateMixin<Categoria?> {
+class HomeController extends GetxController with StateMixin<Category?> {
   // final _cardapioIndex = 0.obs;
   // int get cardapioIndex => _cardapioIndex.value;
   // set cardapioIndex(int index) => _cardapioIndex(index);

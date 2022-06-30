@@ -16,11 +16,11 @@ class CardapioController extends GetxController {
     return await service.getCategorias(boxMenu: boxMenu);
   }
 
-  Future<Categoria?> getCategoriaHive({required int index}) async {
+  Future<Category?> getCategoriaHive({required int index}) async {
     return await service.getCategoriaHive(index: index);
   }
 
-  Future<List<Categoria>> getAllHive() async {
+  Future<List<Category>> getAllHive() async {
     return await service.getAllHive();
   }
 }

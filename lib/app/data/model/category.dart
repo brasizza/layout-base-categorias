@@ -5,10 +5,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:cardapio/app/data/model/item.dart';
 
-part 'categoria.g.dart';
+part 'category.g.dart';
 
 @HiveType(typeId: 1)
-class Categoria extends HiveObject {
+class Category extends HiveObject {
   @HiveField(0)
   final String id;
   @HiveField(1)
@@ -18,20 +18,20 @@ class Categoria extends HiveObject {
   @HiveField(3)
   List<Item> itens;
 
-  Categoria({
+  Category({
     required this.id,
     this.codigo,
     required this.nome,
     required this.itens,
   });
 
-  Categoria copyWith({
+  Category copyWith({
     String? id,
     String? codigo,
     String? nome,
     List<Item>? itens,
   }) {
-    return Categoria(
+    return Category(
       id: id ?? this.id,
       codigo: codigo ?? this.codigo,
       nome: nome ?? this.nome,
@@ -48,8 +48,8 @@ class Categoria extends HiveObject {
     };
   }
 
-  factory Categoria.fromMap(Map<String, dynamic> map) {
-    return Categoria(
+  factory Category.fromMap(Map<String, dynamic> map) {
+    return Category(
       id: map['id'] as String,
       codigo: map['codigo'] != null ? map['codigo'] as String : null,
       nome: map['nome'] as String,
@@ -63,23 +63,18 @@ class Categoria extends HiveObject {
 
   String toJson() => json.encode(toMap());
 
-  factory Categoria.fromJson(String source) =>
-      Categoria.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Category.fromJson(String source) => Category.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'Categoria(id: $id, codigo: $codigo, nome: $nome, itens: $itens)';
+    return 'Category(id: $id, codigo: $codigo, nome: $nome, itens: $itens)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Categoria &&
-        other.id == id &&
-        other.codigo == codigo &&
-        other.nome == nome &&
-        listEquals(other.itens, itens);
+    return other is Category && other.id == id && other.codigo == codigo && other.nome == nome && listEquals(other.itens, itens);
   }
 
   @override

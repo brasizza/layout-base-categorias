@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:cardapio/app/core/constants.dart';
-import 'package:cardapio/app/data/model/categoria.dart';
+import 'package:cardapio/app/data/model/category.dart';
 import 'package:cardapio/app/data/model/menu.dart';
 
 const baseUrl = 'http://gerador-nomes.herokuapp.com/nomes/10';

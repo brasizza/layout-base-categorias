@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cardapio/app/core/extensions/string.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cardapio/app/core/extensions/numbers.dart';
@@ -29,12 +30,11 @@ class ProductTile extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-                margin: const EdgeInsets.all(1),
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 1),
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: CachedNetworkImageProvider(
-                      'https://picsum.photos/seed/{$image}/400',
+                      'https://picsum.photos/seed/${image.onlyNumber()}/400',
                     ),
                     fit: BoxFit.fill,
                   ),

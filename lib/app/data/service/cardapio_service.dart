@@ -16,11 +16,11 @@ class CardapioService extends GetxService {
     return await repository.getCategorias(boxMenu: boxMenu);
   }
 
-  Future<Categoria?> getCategoriaHive({required int index}) async {
+  Future<Category?> getCategoriaHive({required int index}) async {
     return await repository.getCategoriaHive(index: index);
   }
 
-  Future<List<Categoria>> getAllHive() async {
+  Future<List<Category>> getAllHive() async {
     return await repository.getAllHive();
   }
 }
