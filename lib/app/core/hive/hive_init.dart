@@ -1,3 +1,5 @@
+import 'dart:developer' as developer;
+
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -39,27 +41,42 @@ class HiveInit {
       permanent: true,
     );
     Box<Menu> boxMenu = await Hive.openBox<Menu>('menu');
-    Get.put<Box<Menu>>(boxMenu, tag: Constants.menuHive, permanent: true);
+    Get.put<Box<Menu>>(
+      boxMenu,
+      tag: Constants.menuHive,
+      permanent: true,
+    );
   }
 
   static Future<void> initCache({bool refresh = false}) async {
     final hive = Get.find<Box<Categoria>>(tag: Constants.categoriaHive);
-    await Get.find<Box<Menu>>(tag: Constants.menuHive).clear();
-    // if (refresh) {
-    //   await hive.clear();
-    // }
-    // if (hive.length == 0) {
-    final categorias = await Get.put(
-      CardapioController(
-        service: Get.put(
-          CardapioService(
-            repository: Get.put(CardapioRepository()),
+    final boxMenu = Get.find<Box<Menu>>(tag: Constants.menuHive);
+
+    if (refresh) {
+      await hive.clear();
+    }
+
+    developer.log('${hive.length}', name: 'init | hive | antes:');
+    developer.log('${boxMenu.length}', name: 'boxMenu | antes:');
+
+    if (hive.length == 0) {
+      await boxMenu.clear();
+      final categorias = await Get.put(
+        CardapioController(
+          service: Get.put(
+            CardapioService(
+              repository: Get.put(CardapioRepository()),
+            ),
           ),
         ),
-      ),
-    ).getCategorias();
-    await hive.clear();
-    await hive.addAll(categorias);
-    // }
+      ).getCategorias(boxMenu: boxMenu);
+
+      developer.log('${hive.length}', name: 'clear | hive | depois:');
+      developer.log('${boxMenu.length}', name: 'boxMenu | depois:');
+
+      await hive.clear();
+      await hive.addAll(categorias);
+      developer.log('${hive.length}', name: 'addAll | hive | depois:');
+    }
   }
 }
